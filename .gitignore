@@ -1,0 +1,4 @@
+#Ignore IDEA artifacts
+*.iws
+workspace.xml
+tasks.xml
