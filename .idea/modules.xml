@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Jbrains-TDD.iml" filepath="$PROJECT_DIR$/Jbrains-TDD.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Jbrains-TDD_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Jbrains-TDD_main.iml" group="Jbrains-TDD" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Jbrains-TDD_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Jbrains-TDD_test.iml" group="Jbrains-TDD" />
+      <module fileurl="file://$PROJECT_DIR$/JBrain-TDD.iml" filepath="$PROJECT_DIR$/JBrain-TDD.iml" />
     </modules>
   </component>
 </project>
