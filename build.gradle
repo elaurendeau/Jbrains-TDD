@@ -1,5 +1,6 @@
 buildscript {
     ext.kotlin_version = '1.2.41'
+
     repositories {
         mavenCentral()
     }
@@ -8,26 +9,31 @@ buildscript {
     }
 }
 
+plugins {
+    id 'java'
+}
+
+group 'ca.elliot'
+version '1.0-SNAPSHOT'
+
 apply plugin: 'kotlin'
-apply plugin: 'application'
-apply plugin: 'idea'
 
-mainClassName = 'demo.HelloWorldKt'
-
-defaultTasks 'run'
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
-    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.2.0'
+    testCompile group: 'org.assertj', name: 'assertj-core', version: '3.10.0'
 
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = "4.4"
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
 }
