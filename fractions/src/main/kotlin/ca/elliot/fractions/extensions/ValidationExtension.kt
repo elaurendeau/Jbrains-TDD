@@ -13,4 +13,8 @@ fun FractionDto.validate() {
     if (((this.numerator > 0 || this.numerator < 0) && this.denominator == 0)) {
         throw IllegalArgumentException(FractionConstants.EXCEPTION_MESSAGE_DIVISION_BY_ZERO)
     }
+
+    if(this.denominator < 0) {
+        throw IllegalArgumentException(FractionConstants.EXCEPTION_MESSAGE_NEGATIVE_DENOMINATOR)
+    }
 }

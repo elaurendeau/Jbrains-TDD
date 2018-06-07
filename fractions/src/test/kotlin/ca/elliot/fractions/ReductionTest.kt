@@ -20,13 +20,30 @@ class ReductionTest {
 
     //    2/12 = 1/6
     @Test
-    internal fun `valid reduction with smaller denominator`() {
+    internal fun `valid reduction with smaller numerator`() {
         val resultingFraction = FractionDto(numerator = 2, denominator = 12).reduce()
 
         Assertions.assertThat(resultingFraction.numerator).isEqualTo(1)
         Assertions.assertThat(resultingFraction.denominator).isEqualTo(6)
     }
 
+    //    15/3 = 5/1
+    @Test
+    internal fun `valid reduction with bigger numerator`() {
+        val resultingFraction = FractionDto(numerator = 15, denominator = 3).reduce()
+
+        Assertions.assertThat(resultingFraction.numerator).isEqualTo(5)
+        Assertions.assertThat(resultingFraction.denominator).isEqualTo(1)
+    }
+
+    //    -12/3 = -4/1
+    @Test
+    internal fun `valid reduction with a negative numerator`() {
+        val resultingFraction = FractionDto(numerator = -12, denominator = 3).reduce()
+
+        Assertions.assertThat(resultingFraction.numerator).isEqualTo(-4)
+        Assertions.assertThat(resultingFraction.denominator).isEqualTo(1)
+    }
     //    0/0 = 0/0
     @Test
     internal fun `valid reduction of zero`() {

@@ -19,7 +19,6 @@ fun FractionDto.reduce(): FractionDto {
         return FractionDto(numerator = 0, denominator = 0)
     }
 
-
     for(i in 2..this.denominator) {
         if(this.numerator.rem(i) == 0 && this.denominator.rem(i) == 0) {
             return FractionDto(numerator= this.numerator/i, denominator = this.denominator/i)

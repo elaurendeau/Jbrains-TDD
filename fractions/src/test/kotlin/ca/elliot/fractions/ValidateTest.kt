@@ -17,6 +17,13 @@ class ValidateTest {
             FractionDto(numerator = 15, denominator = 0).validate()
         }.withMessage(FractionConstants.EXCEPTION_MESSAGE_DIVISION_BY_ZERO)
     }
+    //    5/-1
+    @Test
+    internal fun `invalid fraction with negative denominator`() {
+        Assertions.assertThatIllegalArgumentException().isThrownBy {
+            FractionDto(numerator = 5, denominator = -1).validate()
+        }.withMessage(FractionConstants.EXCEPTION_MESSAGE_NEGATIVE_DENOMINATOR)
+    }
 
     //    -15/0 = illegal argument
     @Test
