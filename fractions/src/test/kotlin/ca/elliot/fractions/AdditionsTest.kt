@@ -19,6 +19,15 @@ class AdditionsTest {
         Assertions.assertThat(resultingFraction.denominator).isEqualTo(15)
     }
 
+    //   -2/4 + 1/3 = -2/12 = -1/6
+    @Test
+    internal fun `valid addition of one negative number and a positive number`() {
+        val resultingFraction = FractionDto(numerator = -2, denominator = 4).add(FractionDto(numerator = 1, denominator = 3))
+
+        Assertions.assertThat(resultingFraction.numerator).isEqualTo(-2)
+        Assertions.assertThat(resultingFraction.denominator).isEqualTo(12)
+    }
+
     //    0/0 + 0/0 = 0/0
     @Test
     internal fun `valid addition of two zero numbers`() {
