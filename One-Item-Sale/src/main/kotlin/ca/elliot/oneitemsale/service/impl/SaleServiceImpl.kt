@@ -1,5 +1,6 @@
 package ca.elliot.oneitemsale.service.impl
 
+import ca.elliot.oneitemsale.dto.ProductErrorDto
 import ca.elliot.oneitemsale.enumeration.SaleErrorEnum
 import ca.elliot.oneitemsale.infrastructure.IDisplayConnector
 import ca.elliot.oneitemsale.manager.IProductManager
@@ -13,7 +14,7 @@ class SaleServiceImpl(private val productManager: IProductManager, private val d
         } else {
             val price = productManager.getPrice(barcode)
             if(price == null) {
-                displayConnector.display(SaleErrorEnum.PRODUCT_NOT_FOUND)
+                 displayConnector.display(ProductErrorDto(ProductErrorDto.ErrorEnum.PRODUCT_NOT_FOUND, barcode))
             } else {
                 price?.let { displayConnector.display(it) }
             }

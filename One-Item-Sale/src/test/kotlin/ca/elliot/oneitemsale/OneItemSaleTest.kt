@@ -58,7 +58,7 @@ class OneItemSaleTest: KoinTest {
     @Test
     internal fun `valid barcode product not found`() {
         saleController.scan("5555555")
-        Assertions.assertThat(displayHandler.getDisplayedText()).isEqualTo("Product not found")
+        Assertions.assertThat(displayHandler.getDisplayedText()).isEqualTo("Product number: 5555555 not found")
     }
 
     @Test
