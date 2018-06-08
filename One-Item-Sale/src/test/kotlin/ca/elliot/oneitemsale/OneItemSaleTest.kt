@@ -64,7 +64,6 @@ class OneItemSaleTest: KoinTest {
     }
 
     @Test
-    @Disabled
     internal fun `empty bar code`() {
         saleController.scan("")
         Assertions.assertThat(displayHandler.getDisplayedText()).isEqualTo("Invalid barcode: Empty")
