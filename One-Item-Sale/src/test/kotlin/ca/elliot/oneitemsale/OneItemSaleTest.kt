@@ -8,9 +8,9 @@ import java.util.*
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class OneItemSaleTest {
 
-    internal fun getScannerAndDisplay(): Pair<ProductScanner, Display> {
+    private fun getScannerAndDisplay(): Pair<ProductScanner, Display> {
         val display = Display()
-        val productScanner = ProductScanner(display)
+        val productScanner = ProductScanner(display, hashMapOf("3241234" to "8.25$", "1234" to "7.25$"))
 
         return Pair(productScanner, display)
     }
@@ -59,10 +59,9 @@ class OneItemSaleTest {
         Assertions.assertThat(display.text).isEqualTo("Invalid barcode: Empty")
     }
 
-    class ProductScanner(private val display: Display) {
+    class ProductScanner(private val display: Display, private val barcodeToPriceMap: Map<String, String>) {
 
         fun scan(barcode: String) {
-            val barcodeToPriceMap = hashMapOf("3241234" to "8.25$", "1234" to "7.25$")
             display.text = if (barcode.isEmpty()) {
                 "Invalid barcode: Empty"
             } else {
