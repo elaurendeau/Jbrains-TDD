@@ -9,13 +9,20 @@ buildscript {
     }
 }
 
+plugins {
+    id 'java'
+}
+
 group 'ca.elliot'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'kotlin'
 
+sourceCompatibility = 1.8
+
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -24,7 +31,6 @@ dependencies {
 
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.2.0'
     testCompile group: 'org.assertj', name: 'assertj-core', version: '3.10.0'
-
 }
 
 compileKotlin {

@@ -20,6 +20,7 @@ class EqualTest {
     internal fun `invalid equal fractions different numerator`() {
         assertThat(FractionDto(numerator = 5, denominator = 3).same(FractionDto(numerator = 7, denominator = 3))).isFalse()
     }
+
     //    5/3 == 5/3
     @Test
     internal fun `valid equal fractions`() {

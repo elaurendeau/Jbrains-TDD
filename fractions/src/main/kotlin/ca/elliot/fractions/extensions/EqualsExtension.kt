@@ -18,5 +18,5 @@ fun FractionDto.same(rightFraction: FractionDto): Boolean {
     val reducedLeftFraction = this.reduce()
     val reducedRightFraction = rightFraction.reduce()
 
-    return reducedLeftFraction.numerator == reducedRightFraction.numerator && reducedLeftFraction.denominator == reducedRightFraction.denominator
+    return reducedLeftFraction == reducedRightFraction
 }

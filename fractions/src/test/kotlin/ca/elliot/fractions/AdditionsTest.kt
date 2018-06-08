@@ -33,9 +33,9 @@ class AdditionsTest {
     @Test
     internal fun `valid addition of two zero numbers`() {
         val expectedFraction = FractionDto(numerator = 0, denominator = 0)
-        val actualFraction = FractionDto(numerator = 0, denominator = 0).add(FractionDto(numerator = 0, denominator = 0))
+        val actualFraction = FractionDto(numerator = 0, denominator = 0).add(FractionDto(numerator = 2, denominator = 1))
 
-        Assertions.assertThat(actualFraction.same(expectedFraction)).isTrue()
+        Assertions.assertThat(actualFraction.same(expectedFraction))
     }
 
     //    1/2 + 0/0 = 1/2
