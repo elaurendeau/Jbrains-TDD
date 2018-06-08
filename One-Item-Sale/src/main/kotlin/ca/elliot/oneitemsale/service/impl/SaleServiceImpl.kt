@@ -11,9 +11,12 @@ class SaleServiceImpl(private val productManager: IProductManager, private val d
         if(barcode.isEmpty()) {
             displayConnector.display(SaleErrorEnum.BARCODE_EMPTY)
         } else {
-
             val price = productManager.getPrice(barcode)
-            price?.let { displayConnector.display(it) }
+            if(price == null) {
+                displayConnector.display(SaleErrorEnum.PRODUCT_NOT_FOUND)
+            } else {
+                price?.let { displayConnector.display(it) }
+            }
         }
     }
 }

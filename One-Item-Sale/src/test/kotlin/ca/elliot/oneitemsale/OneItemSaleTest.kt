@@ -56,11 +56,9 @@ class OneItemSaleTest: KoinTest {
     }
 
     @Test
-    @Disabled
     internal fun `valid barcode product not found`() {
-        val barcode = "5555555"
-        saleController.scan(barcode)
-        Assertions.assertThat(displayHandler.getDisplayedText()).isEqualTo("Product not found for $barcode")
+        saleController.scan("5555555")
+        Assertions.assertThat(displayHandler.getDisplayedText()).isEqualTo("Product not found")
     }
 
     @Test
