@@ -45,19 +45,32 @@ class OneItemSaleTest {
         val barcode = "5555555"
         scanner.scan(barcode)
 
-        Assertions.assertThat(display.text).isEqualTo("product not found")
+        Assertions.assertThat(display.text).isEqualTo("Product not found for $barcode")
+    }
+
+    @Test
+    internal fun `empty bar code`() {
+
+        val (scanner, display) = getScannerAndDisplay()
+
+        val barcode = ""
+        scanner.scan(barcode)
+
+        Assertions.assertThat(display.text).isEqualTo("Invalid barcode: Empty")
     }
 
     class ProductScanner(val display: Display) {
 
         fun scan(barcode: String) {
 
-            display.text = if (barcode == "1234") {
-                "7.25$"
+            display.text = if (barcode.isEmpty()) {
+                "Invalid barcode: Empty"
             } else if (barcode == "3241234") {
                 "8.25$"
+            } else if (barcode == "1234") {
+                "7.25$"
             } else {
-                "product not found"
+                "Product not found for $barcode"
             }
 
         }
