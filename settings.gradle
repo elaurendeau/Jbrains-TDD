@@ -1,3 +1,4 @@
 rootProject.name = 'JBrains-TDD'
 include 'fractions'
+include 'One-Item-Sale'
 

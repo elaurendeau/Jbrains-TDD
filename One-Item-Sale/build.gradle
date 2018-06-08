@@ -1,5 +1,6 @@
 buildscript {
     ext.kotlin_version = '1.2.41'
+    ext.koin_version = '0.9.3'
 
     repositories {
         mavenCentral()
@@ -9,22 +10,30 @@ buildscript {
     }
 }
 
+plugins {
+    id 'java'
+}
+
 group 'ca.elliot'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'kotlin'
 
+sourceCompatibility = 1.8
+
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
+    compile "org.koin:koin-core:$koin_version"
 
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.2.0'
     testCompile group: 'org.assertj', name: 'assertj-core', version: '3.10.0'
-
+    testCompile "org.koin:koin-test:$koin_version"
 }
 
 compileKotlin {
