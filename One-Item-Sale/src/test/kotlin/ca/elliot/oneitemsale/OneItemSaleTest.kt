@@ -5,7 +5,9 @@ import ca.elliot.oneitemsale.handler.IDisplayHandler
 import ca.elliot.oneitemsale.handler.impl.DisplayHandlerImpl
 import ca.elliot.oneitemsale.infrastructure.impl.DisplayConnectorImpl
 import ca.elliot.oneitemsale.infrastructure.IDisplayConnector
+import ca.elliot.oneitemsale.manager.IBarcodeManager
 import ca.elliot.oneitemsale.manager.IProductManager
+import ca.elliot.oneitemsale.manager.impl.BarcodeManagerImpl
 import ca.elliot.oneitemsale.manager.impl.ProductManagerImpl
 import ca.elliot.oneitemsale.service.ISaleService
 import ca.elliot.oneitemsale.service.impl.SaleServiceImpl
@@ -27,8 +29,9 @@ class OneItemSaleTest: KoinTest {
 
     private val module : Module = applicationContext {
         bean { SaleController(get()) }
-        bean { SaleServiceImpl(get(), get()) as ISaleService }
-        bean { ProductManagerImpl(hashMapOf("3241234" to BigDecimal(8.25), "1234" to BigDecimal("7.25"))) as IProductManager }
+        bean { BarcodeManagerImpl() as IBarcodeManager }
+        bean { SaleServiceImpl(get(), get(), get()) as ISaleService }
+        bean { ProductManagerImpl(hashMapOf("32412345" to BigDecimal(8.25), "12345678" to BigDecimal("7.25"))) as IProductManager }
         bean { DisplayConnectorImpl(get()) as IDisplayConnector }
         bean { DisplayHandlerImpl() as IDisplayHandler }
     }
@@ -45,26 +48,34 @@ class OneItemSaleTest: KoinTest {
 
     @Test
     internal fun `valid barcode received`() {
-        saleController.scan("1234")
+        saleController.scan("12345678")
         Assertions.assertThat(displayHandler.getDisplayedText()).isEqualTo("7.25$")
     }
 
     @Test
     internal fun `second valid barcode received`() {
-        saleController.scan("3241234")
+        saleController.scan("32412345")
         Assertions.assertThat(displayHandler.getDisplayedText()).isEqualTo("8.25$")
     }
 
     @Test
     internal fun `valid barcode product not found`() {
-        saleController.scan("5555555")
-        Assertions.assertThat(displayHandler.getDisplayedText()).isEqualTo("Product number: 5555555 not found")
+        val barcode = "55555555"
+        saleController.scan(barcode)
+        Assertions.assertThat(displayHandler.getDisplayedText()).isEqualTo("Product number: $barcode not found")
     }
 
     @Test
     internal fun `empty bar code`() {
         saleController.scan("")
         Assertions.assertThat(displayHandler.getDisplayedText()).isEqualTo("Invalid barcode: Empty")
+    }
+
+    @Test
+    internal fun `invalid barcode with letters`() {
+        val barcode = "ASBFSDDF"
+        saleController.scan(barcode)
+        Assertions.assertThat(displayHandler.getDisplayedText()).isEqualTo("Invalid barcode: $barcode")
     }
 }
 

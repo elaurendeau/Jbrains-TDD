@@ -10,6 +10,8 @@ class DisplayConnectorImpl(private val displayHandler: IDisplayHandler): IDispla
     override fun display(error: BarcodeErrorDto) {
         if(error.error == BarcodeErrorDto.ErrorEnum.BARCODE_EMPTY) {
             displayHandler.display("Invalid barcode: Empty")
+        } else if(error.error == BarcodeErrorDto.ErrorEnum.BARCODE_INVALID) {
+            displayHandler.display("Invalid barcode: ${error.barcode}")
         }
     }
 
