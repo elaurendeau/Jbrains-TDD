@@ -59,20 +59,15 @@ class OneItemSaleTest {
         Assertions.assertThat(display.text).isEqualTo("Invalid barcode: Empty")
     }
 
-    class ProductScanner(val display: Display) {
+    class ProductScanner(private val display: Display) {
 
         fun scan(barcode: String) {
-
+            val barcodeToPriceMap = hashMapOf("3241234" to "8.25$", "1234" to "7.25$")
             display.text = if (barcode.isEmpty()) {
                 "Invalid barcode: Empty"
-            } else if (barcode == "3241234") {
-                "8.25$"
-            } else if (barcode == "1234") {
-                "7.25$"
             } else {
-                "Product not found for $barcode"
+                barcodeToPriceMap.getOrDefault(barcode, "Product not found for $barcode")
             }
-
         }
 
     }
